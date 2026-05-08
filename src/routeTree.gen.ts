@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as VotingRouteImport } from './routes/voting'
 import { Route as TransparencyRouteImport } from './routes/transparency'
 import { Route as RightsRouteImport } from './routes/rights'
+import { Route as ReputationRouteImport } from './routes/reputation'
 import { Route as PolicyRouteImport } from './routes/policy'
 import { Route as ExplainabilityRouteImport } from './routes/explainability'
 import { Route as ConsentRouteImport } from './routes/consent'
@@ -31,6 +32,11 @@ const TransparencyRoute = TransparencyRouteImport.update({
 const RightsRoute = RightsRouteImport.update({
   id: '/rights',
   path: '/rights',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReputationRoute = ReputationRouteImport.update({
+  id: '/reputation',
+  path: '/reputation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PolicyRoute = PolicyRouteImport.update({
@@ -65,6 +71,7 @@ export interface FileRoutesByFullPath {
   '/consent': typeof ConsentRoute
   '/explainability': typeof ExplainabilityRoute
   '/policy': typeof PolicyRoute
+  '/reputation': typeof ReputationRoute
   '/rights': typeof RightsRoute
   '/transparency': typeof TransparencyRoute
   '/voting': typeof VotingRoute
@@ -75,6 +82,7 @@ export interface FileRoutesByTo {
   '/consent': typeof ConsentRoute
   '/explainability': typeof ExplainabilityRoute
   '/policy': typeof PolicyRoute
+  '/reputation': typeof ReputationRoute
   '/rights': typeof RightsRoute
   '/transparency': typeof TransparencyRoute
   '/voting': typeof VotingRoute
@@ -86,6 +94,7 @@ export interface FileRoutesById {
   '/consent': typeof ConsentRoute
   '/explainability': typeof ExplainabilityRoute
   '/policy': typeof PolicyRoute
+  '/reputation': typeof ReputationRoute
   '/rights': typeof RightsRoute
   '/transparency': typeof TransparencyRoute
   '/voting': typeof VotingRoute
@@ -98,6 +107,7 @@ export interface FileRouteTypes {
     | '/consent'
     | '/explainability'
     | '/policy'
+    | '/reputation'
     | '/rights'
     | '/transparency'
     | '/voting'
@@ -108,6 +118,7 @@ export interface FileRouteTypes {
     | '/consent'
     | '/explainability'
     | '/policy'
+    | '/reputation'
     | '/rights'
     | '/transparency'
     | '/voting'
@@ -118,6 +129,7 @@ export interface FileRouteTypes {
     | '/consent'
     | '/explainability'
     | '/policy'
+    | '/reputation'
     | '/rights'
     | '/transparency'
     | '/voting'
@@ -129,6 +141,7 @@ export interface RootRouteChildren {
   ConsentRoute: typeof ConsentRoute
   ExplainabilityRoute: typeof ExplainabilityRoute
   PolicyRoute: typeof PolicyRoute
+  ReputationRoute: typeof ReputationRoute
   RightsRoute: typeof RightsRoute
   TransparencyRoute: typeof TransparencyRoute
   VotingRoute: typeof VotingRoute
@@ -155,6 +168,13 @@ declare module '@tanstack/react-router' {
       path: '/rights'
       fullPath: '/rights'
       preLoaderRoute: typeof RightsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reputation': {
+      id: '/reputation'
+      path: '/reputation'
+      fullPath: '/reputation'
+      preLoaderRoute: typeof ReputationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/policy': {
@@ -201,6 +221,7 @@ const rootRouteChildren: RootRouteChildren = {
   ConsentRoute: ConsentRoute,
   ExplainabilityRoute: ExplainabilityRoute,
   PolicyRoute: PolicyRoute,
+  ReputationRoute: ReputationRoute,
   RightsRoute: RightsRoute,
   TransparencyRoute: TransparencyRoute,
   VotingRoute: VotingRoute,
