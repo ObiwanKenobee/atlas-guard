@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VotingRouteImport } from './routes/voting'
+import { Route as ExplainabilityRouteImport } from './routes/explainability'
 import { Route as IndexRouteImport } from './routes/index'
 
 const VotingRoute = VotingRouteImport.update({
   id: '/voting',
   path: '/voting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExplainabilityRoute = ExplainabilityRouteImport.update({
+  id: '/explainability',
+  path: '/explainability',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,27 +31,31 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/explainability': typeof ExplainabilityRoute
   '/voting': typeof VotingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/explainability': typeof ExplainabilityRoute
   '/voting': typeof VotingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/explainability': typeof ExplainabilityRoute
   '/voting': typeof VotingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/voting'
+  fullPaths: '/' | '/explainability' | '/voting'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/voting'
-  id: '__root__' | '/' | '/voting'
+  to: '/' | '/explainability' | '/voting'
+  id: '__root__' | '/' | '/explainability' | '/voting'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ExplainabilityRoute: typeof ExplainabilityRoute
   VotingRoute: typeof VotingRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/voting'
       fullPath: '/voting'
       preLoaderRoute: typeof VotingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explainability': {
+      id: '/explainability'
+      path: '/explainability'
+      fullPath: '/explainability'
+      preLoaderRoute: typeof ExplainabilityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ExplainabilityRoute: ExplainabilityRoute,
   VotingRoute: VotingRoute,
 }
 export const routeTree = rootRouteImport
