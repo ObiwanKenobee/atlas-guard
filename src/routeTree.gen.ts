@@ -14,6 +14,7 @@ import { Route as TransparencyRouteImport } from './routes/transparency'
 import { Route as RightsRouteImport } from './routes/rights'
 import { Route as PolicyRouteImport } from './routes/policy'
 import { Route as ExplainabilityRouteImport } from './routes/explainability'
+import { Route as AuditRouteImport } from './routes/audit'
 import { Route as IndexRouteImport } from './routes/index'
 
 const VotingRoute = VotingRouteImport.update({
@@ -41,6 +42,11 @@ const ExplainabilityRoute = ExplainabilityRouteImport.update({
   path: '/explainability',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuditRoute = AuditRouteImport.update({
+  id: '/audit',
+  path: '/audit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -49,6 +55,7 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/audit': typeof AuditRoute
   '/explainability': typeof ExplainabilityRoute
   '/policy': typeof PolicyRoute
   '/rights': typeof RightsRoute
@@ -57,6 +64,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/audit': typeof AuditRoute
   '/explainability': typeof ExplainabilityRoute
   '/policy': typeof PolicyRoute
   '/rights': typeof RightsRoute
@@ -66,6 +74,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/audit': typeof AuditRoute
   '/explainability': typeof ExplainabilityRoute
   '/policy': typeof PolicyRoute
   '/rights': typeof RightsRoute
@@ -76,6 +85,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/audit'
     | '/explainability'
     | '/policy'
     | '/rights'
@@ -84,6 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/audit'
     | '/explainability'
     | '/policy'
     | '/rights'
@@ -92,6 +103,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/audit'
     | '/explainability'
     | '/policy'
     | '/rights'
@@ -101,6 +113,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuditRoute: typeof AuditRoute
   ExplainabilityRoute: typeof ExplainabilityRoute
   PolicyRoute: typeof PolicyRoute
   RightsRoute: typeof RightsRoute
@@ -145,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExplainabilityRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/audit': {
+      id: '/audit'
+      path: '/audit'
+      fullPath: '/audit'
+      preLoaderRoute: typeof AuditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -157,6 +177,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuditRoute: AuditRoute,
   ExplainabilityRoute: ExplainabilityRoute,
   PolicyRoute: PolicyRoute,
   RightsRoute: RightsRoute,
