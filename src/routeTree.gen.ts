@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VotingRouteImport } from './routes/voting'
+import { Route as TreasuryRouteImport } from './routes/treasury'
 import { Route as TransparencyRouteImport } from './routes/transparency'
 import { Route as RightsRouteImport } from './routes/rights'
 import { Route as ReputationRouteImport } from './routes/reputation'
@@ -22,6 +23,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const VotingRoute = VotingRouteImport.update({
   id: '/voting',
   path: '/voting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TreasuryRoute = TreasuryRouteImport.update({
+  id: '/treasury',
+  path: '/treasury',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TransparencyRoute = TransparencyRouteImport.update({
@@ -74,6 +80,7 @@ export interface FileRoutesByFullPath {
   '/reputation': typeof ReputationRoute
   '/rights': typeof RightsRoute
   '/transparency': typeof TransparencyRoute
+  '/treasury': typeof TreasuryRoute
   '/voting': typeof VotingRoute
 }
 export interface FileRoutesByTo {
@@ -85,6 +92,7 @@ export interface FileRoutesByTo {
   '/reputation': typeof ReputationRoute
   '/rights': typeof RightsRoute
   '/transparency': typeof TransparencyRoute
+  '/treasury': typeof TreasuryRoute
   '/voting': typeof VotingRoute
 }
 export interface FileRoutesById {
@@ -97,6 +105,7 @@ export interface FileRoutesById {
   '/reputation': typeof ReputationRoute
   '/rights': typeof RightsRoute
   '/transparency': typeof TransparencyRoute
+  '/treasury': typeof TreasuryRoute
   '/voting': typeof VotingRoute
 }
 export interface FileRouteTypes {
@@ -110,6 +119,7 @@ export interface FileRouteTypes {
     | '/reputation'
     | '/rights'
     | '/transparency'
+    | '/treasury'
     | '/voting'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -121,6 +131,7 @@ export interface FileRouteTypes {
     | '/reputation'
     | '/rights'
     | '/transparency'
+    | '/treasury'
     | '/voting'
   id:
     | '__root__'
@@ -132,6 +143,7 @@ export interface FileRouteTypes {
     | '/reputation'
     | '/rights'
     | '/transparency'
+    | '/treasury'
     | '/voting'
   fileRoutesById: FileRoutesById
 }
@@ -144,6 +156,7 @@ export interface RootRouteChildren {
   ReputationRoute: typeof ReputationRoute
   RightsRoute: typeof RightsRoute
   TransparencyRoute: typeof TransparencyRoute
+  TreasuryRoute: typeof TreasuryRoute
   VotingRoute: typeof VotingRoute
 }
 
@@ -154,6 +167,13 @@ declare module '@tanstack/react-router' {
       path: '/voting'
       fullPath: '/voting'
       preLoaderRoute: typeof VotingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/treasury': {
+      id: '/treasury'
+      path: '/treasury'
+      fullPath: '/treasury'
+      preLoaderRoute: typeof TreasuryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/transparency': {
@@ -224,6 +244,7 @@ const rootRouteChildren: RootRouteChildren = {
   ReputationRoute: ReputationRoute,
   RightsRoute: RightsRoute,
   TransparencyRoute: TransparencyRoute,
+  TreasuryRoute: TreasuryRoute,
   VotingRoute: VotingRoute,
 }
 export const routeTree = rootRouteImport
