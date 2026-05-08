@@ -9,8 +9,62 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VotingRouteImport } from './routes/voting'
+import { Route as TreasuryRouteImport } from './routes/treasury'
+import { Route as TransparencyRouteImport } from './routes/transparency'
+import { Route as RightsRouteImport } from './routes/rights'
+import { Route as ReputationRouteImport } from './routes/reputation'
+import { Route as PolicyRouteImport } from './routes/policy'
+import { Route as ExplainabilityRouteImport } from './routes/explainability'
+import { Route as ConsentRouteImport } from './routes/consent'
+import { Route as AuditRouteImport } from './routes/audit'
 import { Route as IndexRouteImport } from './routes/index'
 
+const VotingRoute = VotingRouteImport.update({
+  id: '/voting',
+  path: '/voting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TreasuryRoute = TreasuryRouteImport.update({
+  id: '/treasury',
+  path: '/treasury',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TransparencyRoute = TransparencyRouteImport.update({
+  id: '/transparency',
+  path: '/transparency',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RightsRoute = RightsRouteImport.update({
+  id: '/rights',
+  path: '/rights',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReputationRoute = ReputationRouteImport.update({
+  id: '/reputation',
+  path: '/reputation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PolicyRoute = PolicyRouteImport.update({
+  id: '/policy',
+  path: '/policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExplainabilityRoute = ExplainabilityRouteImport.update({
+  id: '/explainability',
+  path: '/explainability',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConsentRoute = ConsentRouteImport.update({
+  id: '/consent',
+  path: '/consent',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuditRoute = AuditRouteImport.update({
+  id: '/audit',
+  path: '/audit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +73,158 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/audit': typeof AuditRoute
+  '/consent': typeof ConsentRoute
+  '/explainability': typeof ExplainabilityRoute
+  '/policy': typeof PolicyRoute
+  '/reputation': typeof ReputationRoute
+  '/rights': typeof RightsRoute
+  '/transparency': typeof TransparencyRoute
+  '/treasury': typeof TreasuryRoute
+  '/voting': typeof VotingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/audit': typeof AuditRoute
+  '/consent': typeof ConsentRoute
+  '/explainability': typeof ExplainabilityRoute
+  '/policy': typeof PolicyRoute
+  '/reputation': typeof ReputationRoute
+  '/rights': typeof RightsRoute
+  '/transparency': typeof TransparencyRoute
+  '/treasury': typeof TreasuryRoute
+  '/voting': typeof VotingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/audit': typeof AuditRoute
+  '/consent': typeof ConsentRoute
+  '/explainability': typeof ExplainabilityRoute
+  '/policy': typeof PolicyRoute
+  '/reputation': typeof ReputationRoute
+  '/rights': typeof RightsRoute
+  '/transparency': typeof TransparencyRoute
+  '/treasury': typeof TreasuryRoute
+  '/voting': typeof VotingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/audit'
+    | '/consent'
+    | '/explainability'
+    | '/policy'
+    | '/reputation'
+    | '/rights'
+    | '/transparency'
+    | '/treasury'
+    | '/voting'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/audit'
+    | '/consent'
+    | '/explainability'
+    | '/policy'
+    | '/reputation'
+    | '/rights'
+    | '/transparency'
+    | '/treasury'
+    | '/voting'
+  id:
+    | '__root__'
+    | '/'
+    | '/audit'
+    | '/consent'
+    | '/explainability'
+    | '/policy'
+    | '/reputation'
+    | '/rights'
+    | '/transparency'
+    | '/treasury'
+    | '/voting'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuditRoute: typeof AuditRoute
+  ConsentRoute: typeof ConsentRoute
+  ExplainabilityRoute: typeof ExplainabilityRoute
+  PolicyRoute: typeof PolicyRoute
+  ReputationRoute: typeof ReputationRoute
+  RightsRoute: typeof RightsRoute
+  TransparencyRoute: typeof TransparencyRoute
+  TreasuryRoute: typeof TreasuryRoute
+  VotingRoute: typeof VotingRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/voting': {
+      id: '/voting'
+      path: '/voting'
+      fullPath: '/voting'
+      preLoaderRoute: typeof VotingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/treasury': {
+      id: '/treasury'
+      path: '/treasury'
+      fullPath: '/treasury'
+      preLoaderRoute: typeof TreasuryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/transparency': {
+      id: '/transparency'
+      path: '/transparency'
+      fullPath: '/transparency'
+      preLoaderRoute: typeof TransparencyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rights': {
+      id: '/rights'
+      path: '/rights'
+      fullPath: '/rights'
+      preLoaderRoute: typeof RightsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reputation': {
+      id: '/reputation'
+      path: '/reputation'
+      fullPath: '/reputation'
+      preLoaderRoute: typeof ReputationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/policy': {
+      id: '/policy'
+      path: '/policy'
+      fullPath: '/policy'
+      preLoaderRoute: typeof PolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explainability': {
+      id: '/explainability'
+      path: '/explainability'
+      fullPath: '/explainability'
+      preLoaderRoute: typeof ExplainabilityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/consent': {
+      id: '/consent'
+      path: '/consent'
+      fullPath: '/consent'
+      preLoaderRoute: typeof ConsentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/audit': {
+      id: '/audit'
+      path: '/audit'
+      fullPath: '/audit'
+      preLoaderRoute: typeof AuditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,17 +237,16 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuditRoute: AuditRoute,
+  ConsentRoute: ConsentRoute,
+  ExplainabilityRoute: ExplainabilityRoute,
+  PolicyRoute: PolicyRoute,
+  ReputationRoute: ReputationRoute,
+  RightsRoute: RightsRoute,
+  TransparencyRoute: TransparencyRoute,
+  TreasuryRoute: TreasuryRoute,
+  VotingRoute: VotingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
